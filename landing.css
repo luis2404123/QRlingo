@@ -316,41 +316,54 @@ section {
   color: #d9534f;
 }
 
-/* Supported Languages Section */
-.flags-container {
+/* Supported Languages Section - Flags and Carousel */
+.carousel-flags {
   display: flex;
   justify-content: center;
-  gap: 1.5rem;
+  gap: 20px;
   flex-wrap: wrap;
-  max-width: 1000px;
-  margin: 0 auto;
 }
 
 .flag-item {
-  position: relative;
-  width: 120px;
-  height: 80px;
-  opacity: 0;
-  cursor: pointer;
-  transform: translateY(20px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  overflow: hidden;
+  padding: 5px;
+  background: linear-gradient(135deg, #ff6b6b, #ffcc70);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.4s, box-shadow 0.4s ease;
 }
 
-.flag-item.visible {
-  opacity: 1;
-  transform: translateY(0);
+.flag-item:hover {
+  transform: scale(1.2);
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.3);
 }
 
 .flag-item img {
   width: 100%;
   height: 100%;
-  border-radius: 10px;
-  transition: transform 0.4s ease;
+  object-fit: cover;
+  border-radius: 50%;
 }
 
-.flag-item:hover {
-  transform: scale(1.1);
+.progress-bar-container {
+  width: 300px;
+  height: 10px;
+  background-color: #1c1f35;
+  margin: 20px auto;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(255, 107, 107, 0.5);
 }
+
+.progress-bar {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(135deg, #ff6b6b, #ffcc70);
+  border-radius: 10px;
+  transition: width 0.5s ease-in-out;
+}
+
 /* Blog Section */
 .blog-grid {
   display: flex;
