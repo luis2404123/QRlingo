@@ -92,44 +92,52 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Language Section - View More Button Logic for Flags
-  const flags = document.querySelectorAll('.flag-item');
-  const toggleButton = document.getElementById('toggleLanguages');
+const carouselFlags = document.getElementById('carouselFlags');
+const progressBar = document.getElementById('progressBar');
 
-  let currentIndex = 0;  // To track the current set
-  const itemsPerSet = 3; // Number of flags per set
+// List of flag images
+const flagImages = [
+  'https://flagcdn.com/w320/us.png', 'https://flagcdn.com/w320/fr.png', 'https://flagcdn.com/w320/de.png',
+  'https://flagcdn.com/w320/es.png', 'https://flagcdn.com/w320/cn.png', 'https://flagcdn.com/w320/it.png',
+  'https://flagcdn.com/w320/gb.png', 'https://flagcdn.com/w320/jp.png', 'https://flagcdn.com/w320/au.png',
+  'https://flagcdn.com/w320/br.png', 'https://flagcdn.com/w320/ru.png', 'https://flagcdn.com/w320/za.png',
+  'https://flagcdn.com/w320/nl.png', 'https://flagcdn.com/w320/se.png', 'https://flagcdn.com/w320/kr.png',
+  'https://flagcdn.com/w320/in.png', 'https://flagcdn.com/w320/ca.png', 'https://flagcdn.com/w320/fi.png',
+  'https://flagcdn.com/w320/pt.png', 'https://flagcdn.com/w320/no.png', 'https://flagcdn.com/w320/gr.png',
+  'https://flagcdn.com/w320/dk.png', 'https://flagcdn.com/w320/ae.png', 'https://flagcdn.com/w320/vn.png',
+  'https://flagcdn.com/w320/ar.png', 'https://flagcdn.com/w320/th.png', 'https://flagcdn.com/w320/cl.png',
+  'https://flagcdn.com/w320/sa.png', 'https://flagcdn.com/w320/ie.png', 'https://flagcdn.com/w320/nz.png',
+  'https://flagcdn.com/w320/mx.png', 'https://flagcdn.com/w320/kr.png'
+];
 
-  // Function to display a set of flags
-  const displayFlags = (start) => {
-    // Hide all flags smoothly
-    flags.forEach(flag => {
-      flag.classList.remove('visible');
-      setTimeout(() => flag.style.display = 'none', 500); // After fade-out, hide the flag
-    });
+// Display 6 flags at a time
+const flagsPerSet = 6;
+let currentSet = 0;
 
-    // Show the new set of flags smoothly
-    setTimeout(() => {
-      for (let i = start; i < start + itemsPerSet && i < flags.length; i++) {
-        flags[i].style.display = 'block';
-        setTimeout(() => flags[i].classList.add('visible'), 10); // Trigger fade-in
-      }
-    }, 500); // Delay the display until fade-out finishes
-  };
+function updateFlags() {
+  carouselFlags.innerHTML = ''; // Clear the current flags
 
-  // Initially display the first set
-  displayFlags(currentIndex);
+  // Create and display the next set of flags
+  for (let i = 0; i < flagsPerSet; i++) {
+    const index = (currentSet * flagsPerSet + i) % flagImages.length; // Loop through flags
+    const flagDiv = document.createElement('div');
+    flagDiv.classList.add('flag-item');
+    flagDiv.innerHTML = `<img src="${flagImages[index]}" alt="Flag">`;
+    carouselFlags.appendChild(flagDiv);
+  }
 
-  // On button click, cycle through sets of flags
-  toggleButton.addEventListener('click', () => {
-    // Update the current index to the next set of flags
-    currentIndex += itemsPerSet;
+  // Update the progress bar
+  const progress = ((currentSet + 1) / Math.ceil(flagImages.length / flagsPerSet)) * 100;
+  progressBar.style.width = progress + '%';
 
-    // If we reach the end of the flags, cycle back to the first set
-    if (currentIndex >= flags.length) {
-      currentIndex = 0;
-    }
+  // Move to the next set
+  currentSet = (currentSet + 1) % Math.ceil(flagImages.length / flagsPerSet);
+}
 
-    // Display the new set of flags
-    displayFlags(currentIndex);
+// Automatically rotate flags every 5 seconds
+setInterval(updateFlags, 5000);
+
+// Initial flag load
+updateFlags();
   });
 });
