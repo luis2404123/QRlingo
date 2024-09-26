@@ -350,7 +350,7 @@ section {
 .progress-bar-container {
   width: 300px;
   height: 10px;
-  background-color: #1c1f35;
+  background-color: #d3d3d3; /* Change to a light gray */
   margin: 20px auto;
   border-radius: 10px;
   box-shadow: 0 0 15px rgba(255, 107, 107, 0.5);
@@ -359,10 +359,11 @@ section {
 .progress-bar {
   height: 100%;
   width: 0;
-  background: linear-gradient(135deg, #ff6b6b, #ffcc70);
+  background: linear-gradient(135deg, #ff6b6b, #ffcc70); /* Completed part */
   border-radius: 10px;
   transition: width 0.5s ease-in-out;
 }
+
 
 /* Blog Section */
 .blog-grid {
