@@ -108,6 +108,8 @@ a {
 
 /* Mobile Menu */
 .menu-toggle {
+  margin-right: 20px; /* Adjust this value as needed */
+  cursor: pointer;
   display: none;
   background: none;
   border: none;
@@ -118,6 +120,7 @@ a {
 .hamburger::after {
   width: 25px;
   height: 3px;
+  padding: 0 5px;
   background-color: var(--secondary-color);
   display: block;
   position: relative;
