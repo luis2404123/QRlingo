@@ -70,7 +70,10 @@ a {
 .logo img {
   height: 50px;
 }
-
+.nav-links.active {
+  display: flex;
+  flex-direction: column; /* For stacking the links */
+}
 .nav-links {
   list-style: none;
   display: flex;
