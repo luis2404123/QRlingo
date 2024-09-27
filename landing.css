@@ -686,6 +686,63 @@ input:checked + .slider::before {
   padding: 2rem 0;
   text-align: center;
 }
+/* Double Arrow Scroll Indicator */
+.scroll-down-double-arrow {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 70px;
+  margin-top: 2rem;
+  cursor: pointer;
+  text-align: center;
+  color: var(--primary-color); /* Assuming primary color is set */
+}
+
+.scroll-down-double-arrow .arrow-1,
+.scroll-down-double-arrow .arrow-2 {
+  position: absolute;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 15px solid var(--primary-color); /* Color of the arrows */
+  transform: translateX(-50%);
+  opacity: 0;
+  animation: arrowAnimation 2s infinite;
+}
+
+/* Positioning the arrows */
+.scroll-down-double-arrow .arrow-1 {
+  top: 0;
+  animation-delay: 0s;
+}
+
+.scroll-down-double-arrow .arrow-2 {
+  top: 30px;
+  animation-delay: 0.5s;
+}
+
+/* Animation for the arrows */
+@keyframes arrowAnimation {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px);
+  }
+}
+
+.scroll-down-double-arrow:hover .arrow-1,
+.scroll-down-double-arrow:hover .arrow-2 {
+  animation-play-state: paused; /* Pauses the animation on hover */
+}
 
 .footer-links {
   list-style: none;
