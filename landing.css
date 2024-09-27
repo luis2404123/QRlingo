@@ -762,8 +762,8 @@ input:checked + .slider::before {
   color: var(--primary-color);
 }
 
-/* Responsive Styles */
 @media (max-width: 768px) {
+  /* Stack Navbar Links Vertically */
   .nav-links {
     display: none;
     flex-direction: column;
@@ -772,21 +772,40 @@ input:checked + .slider::before {
     top: 80px;
     right: 0;
     width: 200px;
-    box-shadow: -4px 4px 10px rgba(0, 0, 0, 0.1);
   }
 
-  .nav-links li {
-    margin: 1rem 0;
+  /* Make Hero Section Adjust */
+  .hero-content h1 {
+    font-size: 2rem; /* Adjust the size */
+  }
+
+  .cta-form {
+    flex-direction: column;
+    margin: 0 auto;
+  }
+
+  .cta-form input {
+    margin-bottom: 10px; /* Stack input and button */
+    border-radius: 30px;
+  }
+
+  .pricing-grid {
+    flex-direction: column; /* Stack pricing cards */
+  }
+
+  /* Stack FAQ Items */
+  .faq-item {
+    padding: 1rem; /* Adjust padding for smaller screens */
+  }
+  
+  /* Full width for images */
+  img {
+    max-width: 100%;
   }
 
   .menu-toggle {
-    display: block;
+    display: block; /* Show hamburger */
   }
-
-  .dynamic-flow-container,
-  .comparison-container,
-  .pricing-grid,
-  .blog-grid {
-    flex-direction: column;
-  }
+  
+  /* Ensure the mobile view is smooth */
 }
