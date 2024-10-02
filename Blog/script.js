@@ -2,6 +2,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const navbar = document.querySelector('.navbar');
   const menuToggle = document.querySelector('.menu-toggle');
   const navLinks = document.querySelector('.nav-links');
+  const searchInput = document.querySelector('.search-input'); // Get the search input field
+  const blogCards = document.querySelectorAll('.blog-card');   // Get all blog cards
 
   // Function to change navbar background on scroll
   const handleScroll = () => {
@@ -53,5 +55,23 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       alert("Please fill out all fields before submitting the form.");
     }
+  });
+
+  // Function to filter blog posts based on the search query
+  const filterBlogs = (query) => {
+    blogCards.forEach(card => {
+      const title = card.getAttribute('data-title').toLowerCase(); // Get the title from the data-title attribute
+      if (title.includes(query)) {
+        card.style.display = 'block';  // Show blog card if it matches the search query
+      } else {
+        card.style.display = 'none';   // Hide blog card if it doesn't match
+      }
+    });
+  };
+
+  // Event listener for input in the search bar
+  searchInput.addEventListener('input', () => {
+    const query = searchInput.value.toLowerCase(); // Convert the input to lowercase for case-insensitive search
+    filterBlogs(query);  // Call the filter function with the search query
   });
 });
