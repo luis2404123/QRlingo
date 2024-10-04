@@ -1,11 +1,12 @@
-document.addEventListener('DOMContentLoaded', () => {
+adocument.addEventListener('DOMContentLoaded', () => {
   const navbar = document.querySelector('.navbar');
   const menuToggle = document.querySelector('.menu-toggle');
   const navLinks = document.querySelector('.nav-links');
   const searchInput = document.querySelector('.search-input');
   const blogCards = document.querySelectorAll('.blog-card');
+  const form = document.querySelector('.cta-form'); // Define form only once
 
-  // Check if navbar exists before adding scroll event listener
+  // Navbar scroll effect
   if (navbar) {
     const handleScroll = () => {
       if (window.scrollY > 50) {
@@ -17,21 +18,21 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', handleScroll);
   }
 
-  // Check if mobile toggle button exists before adding click event listener
-  if (menuToggle) {
+  // Mobile menu toggle
+  if (menuToggle && navLinks) {
     menuToggle.addEventListener('click', () => {
       navLinks.classList.toggle('active');
       menuToggle.classList.toggle('open');
     });
   }
 
-  // Add smooth scroll for anchor links
+  // Smooth scroll for anchor links
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       e.preventDefault();
-      const element = document.querySelector(this.getAttribute('href'));
+      const target = document.querySelector(this.getAttribute('href'));
       const headerOffset = navbar ? navbar.offsetHeight : 0;
-      const elementPosition = element.offsetTop;
+      const elementPosition = target ? target.offsetTop : 0;
       const offsetPosition = elementPosition - headerOffset;
 
       window.scrollTo({
@@ -43,7 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Form validation
   if (form) {
-    const form = document.querySelector('.cta-form');
     form.addEventListener('submit', (e) => {
       const name = form.querySelector('input[placeholder="Your Name"]').value.trim();
       const email = form.querySelector('input[placeholder="Your Email"]').value.trim();
@@ -58,15 +58,11 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // Blog search functionality
-  if (searchInput && blogCards) {
+  if (searchInput && blogCards.length > 0) {
     const filterBlogs = (query) => {
       blogCards.forEach(card => {
         const title = card.getAttribute('data-title').toLowerCase();
-        if (title.includes(query)) {
-          card.style.display = 'block';
-        } else {
-          card.style.display = 'none';
-        }
+        card.style.display = title.includes(query) ? 'block' : 'none';
       });
     };
 
